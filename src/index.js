@@ -2,6 +2,7 @@
 // This is the main entry point of our application
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 // local module imports
@@ -9,7 +10,6 @@ const db = require('./db');
 const models = require('./models');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
-const jwt = require('jsonwebtoken');
 
 const port = process.env.PORT || 4000;
 const DB_HOST = process.env.DB_HOST;
@@ -48,7 +48,7 @@ server.applyMiddleware({
   path: '/api'
 });
 
-app.listen(port, () =>
+app.listen({port}, () =>
   console.log(
     `GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
   )
