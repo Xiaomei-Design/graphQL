@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 module.exports = {
-    connect: DB_HOST => {
+    connect: DB_URL => {
         mongoose.set('useNewUrlParser', true);
         mongoose.set('useFindAndModify', false);
         mongoose.set('useCreateIndex', true);
         mongoose.set('useUnifiedTopology', true);
-        mongoose.connect(DB_HOST);
+        mongoose.connect(DB_URL);
         mongoose.connection.on('error', err => {
             console.log(err);
             console.log('MongoDB connection error. Please make sure MongoDB is running.');
